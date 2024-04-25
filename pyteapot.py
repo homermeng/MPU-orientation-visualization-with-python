@@ -14,7 +14,7 @@ useQuat = False   # set true for using quaternions, false for using y,p,r angles
 
 if(useSerial):
     import serial
-    ser = serial.Serial('/dev/ttyUSB0', 38400)
+    ser = serial.Serial('/dev/ttyUSB0', 38400)  # for Teensy 4.0 & MPU 9250 setup, use COM3 and 115200
 else:
     import socket
 
@@ -114,7 +114,7 @@ def read_data():
         nz = float(line.split('c')[1])
         return [w, nx, ny, nz]
     else:
-        yaw = float(line.split('y')[1])
+        yaw = float(line.split('y')[1])   # rpy data in format of "yXXXypXXXprXXXr"
         pitch = float(line.split('p')[1])
         roll = float(line.split('r')[1])
         return [yaw, pitch, roll]
